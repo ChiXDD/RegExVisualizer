@@ -1,39 +1,50 @@
-import { HomeScreen } from './src/presentation/screens/HomeScreen'
-import NeoWsScreen from './src/presentation/screens/NeoWsScreen'
-import EPICScreen from './src/presentation/screens/EPICScreen'
-import MarsRoverScreen from './src/presentation/screens/MarsRoverView'
-import LibraryScreen from './src/presentation/screens/LibraryScreen'
 import { NavigationContainer } from '@react-navigation/native'
-import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { HomeStackParamList } from './src/navigation/types'
-import { ROUTES } from './src/core/routes'
-import { ThemeProvider, useTheme } from './src/core/ThemeContext'
-import { ThemeButton } from './src/core/ThemeButton'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import VisualizerScreen from './src/features/visualizer/presentation/screens/VisualizerScreen'
+import HistoryScreen from './src/features/history/presentation/screens/HistoryScreen'
+import DetailsScreen from './src/features/details/presentation/screens/detailsScreen'
+import { StackParamList } from './types'
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6'
 
-const Drawer = createDrawerNavigator<HomeStackParamList>()
-const Tab = createBottomTabNavigator<HomeStackParamList>()
+const BottomTabs = createBottomTabNavigator<StackParamList>()
+const stack = createNativeStackNavigator<StackParamList>()
 
-function EpicRoverTabs() {
+function DetailsStack() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false, tabBarIconStyle: { display: 'none' }, tabBarStyle: { backgroundColor: '#670D2F'}, tabBarActiveTintColor: 'white', tabBarInactiveTintColor: 'white', tabBarLabelStyle: { fontSize: 20 }, animation: 'shift' }}>
-      <Tab.Screen name={ROUTES.EPIC} component={EPICScreen} />
-      <Tab.Screen name={ROUTES.Rover} component={MarsRoverScreen} />
-    </Tab.Navigator>
+    <stack.Navigator>
+      <stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        options={{ headerShown: false }}
+      />
+    </stack.Navigator>
   )
 }
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <NavigationContainer>
-        <Drawer.Navigator initialRouteName={ROUTES.Home} screenOptions={{ headerStyle: { backgroundColor: '#670D2F' }, headerTintColor: 'white', drawerStyle: { backgroundColor: '#670D2F' }, drawerActiveBackgroundColor: '#31363F', headerTitleAlign: 'center', drawerLabelStyle: {color: 'white', fontSize: 17}, headerRight: () => <ThemeButton /> }}>
-          <Drawer.Screen name={ROUTES.Home} component={HomeScreen} />
-          <Drawer.Screen name={ROUTES['EPIC & Rover']} component={EpicRoverTabs} />
-          <Drawer.Screen name={ROUTES.NeoWs} component={NeoWsScreen} />
-          <Drawer.Screen name={ROUTES.Library} component={LibraryScreen} />
-        </Drawer.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>
+    <NavigationContainer>
+      <BottomTabs.Navigator screenOptions={{ headerTitle: 'RegEx Visualizer' }}>
+        <BottomTabs.Screen
+          name="Visualizer"
+          component={VisualizerScreen}
+          options={{
+            tabBarIcon(props) {
+              return <FontAwesome6 name="house" size={20} color={props.color} iconStyle="solid" />
+            },
+          }}
+        />
+        <BottomTabs.Screen
+          name="History"
+          component={HistoryScreen}
+          options={{
+            tabBarIcon(props) {
+              return <FontAwesome6 name="clock-rotate-left" size={20} color={props.color} iconStyle="solid" />
+            },
+          }}
+        />
+      </BottomTabs.Navigator>
+    </NavigationContainer>
   )
 }
