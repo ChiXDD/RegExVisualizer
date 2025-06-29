@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 export default function InfoButton() {
@@ -6,9 +6,20 @@ export default function InfoButton() {
 
   return (
     <View>
+      <Text style={styles.title}>Don't know how to make a regular expression?</Text>
       <TouchableOpacity onPress={() => navigation.navigate('Details')}>
-        <Text>Check All Tokens Here!</Text>
+        <Text style={styles.text}>Check All Tokens Here!</Text>
       </TouchableOpacity>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 17,
+  },
+  text: {
+    color: 'blue',
+    fontSize: 18,
+  },
+})

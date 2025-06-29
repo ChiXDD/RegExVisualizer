@@ -1,9 +1,27 @@
 import React from 'react'
-import { TextInput, View, Text } from 'react-native'
+import { TextInput, View, Text, StyleSheet } from 'react-native'
 
 export const RegExInput = ({ label, value, onChangeText }: any) => (
-  <View style={{ marginBottom: 10 }}>
-    <Text>{label}</Text>
-    <TextInput style={{ borderWidth: 1, padding: 8, borderRadius: 5 }} value={value} onChangeText={onChangeText} />
+  <View style={styles.container}>
+    <Text style={styles.label}>{label}</Text>
+    <TextInput style={styles.input} value={value} onChangeText={onChangeText} autoCapitalize="none" autoCorrect={false} />
   </View>
 )
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 12,
+  },
+  label: {
+    marginBottom: 4,
+    fontSize: 18,
+    fontWeight: '500',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
+    borderRadius: 6,
+    fontSize: 20,
+  },
+})

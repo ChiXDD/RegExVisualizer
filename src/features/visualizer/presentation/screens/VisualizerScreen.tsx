@@ -1,30 +1,31 @@
-/* import InfoButton from '../atoms/InfoButton'
-
-export default function VisualizerScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text> Visualizer Screen </Text>
-      <Text> Don't know how to make a regular expression? </Text>
-      <InfoButton />
-    </View>
-  )
-} */
-
+import InfoButton from '../atoms/InfoButton'
 import React from 'react'
-import { ScrollView, View } from 'react-native'
-import { RegexForm } from '../organisms/RegExForm'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { RegExForm } from '../organisms/RegExForm'
 import { MatchResultPreview } from '../organisms/MatchResultPreview'
-import { VisualizerViweModel } from '../viewmodels/VisualizerViewModel'
+import { VisualizerViewModel } from '../viewmodels/VisualizerViewModel'
 
 const RegexTesterScreen = () => {
-  const { pattern, setPattern, flags, setFlags, testString, setTestString, result, updateMatch } = VisualizerViweModel()
+  const { pattern, setPattern, flags, setFlags, testString, setTestString, result, updateMatch, reset } = VisualizerViewModel()
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 20 }}>
-      <RegexForm pattern={pattern} flags={flags} testString={testString} setPattern={setPattern} setFlags={setFlags} setTestString={setTestString} updateMatch={updateMatch} />
+    <ScrollView contentContainerStyle={styles.container}>
+      <RegExForm pattern={pattern} flags={flags} testString={testString} setPattern={setPattern} setFlags={setFlags} setTestString={setTestString} updateMatch={updateMatch} reset={reset} />
+      <InfoButton />
       <MatchResultPreview result={result} />
     </ScrollView>
   )
 }
 
 export default RegexTesterScreen
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  subtitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+})
