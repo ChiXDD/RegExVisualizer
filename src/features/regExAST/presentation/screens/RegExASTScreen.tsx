@@ -10,7 +10,7 @@ import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
 // Pantalla principal que muestra el AST de la expresión regular y del texto analizado
 const RegexAstAndMatchScreen = () => {
-  const { pattern, flags, testString, setAST, setMatchTree, ast } = useRegexGlobalStore()
+  const { pattern, flags, testString, setAST, setMatchTree } = useRegexGlobalStore()
 
   useEffect(() => {
     const astResult = ParseRegEx(pattern, flags)
