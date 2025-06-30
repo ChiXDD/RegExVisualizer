@@ -4,7 +4,7 @@ import { TextInput, View, Text, StyleSheet } from 'react-native'
 export const RegExInput = ({ label, value, onChangeText }: any) => (
   <View style={styles.container}>
     <Text style={styles.label}>{label}</Text>
-    <TextInput style={styles.input} value={value} onChangeText={onChangeText} autoCapitalize="none" autoCorrect={false} />
+    <TextInput style={styles.input} value={value} onChangeText={onChangeText} autoCorrect={false} multiline/>
   </View>
 )
 
