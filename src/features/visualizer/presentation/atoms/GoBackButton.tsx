@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
+// Boton para regresar a la pagina principal
 export default function GoBackButton() {
   const navigation = useNavigation()
 

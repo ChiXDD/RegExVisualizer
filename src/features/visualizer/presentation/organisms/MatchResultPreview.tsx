@@ -4,6 +4,7 @@ import { HighlightedText, colors } from '../atoms/HighlightedText'
 import { MatchGroup } from '../atoms/MatchGroup'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Muestra en tiempo real las coincidencias de la expresión regular
 export const MatchResultPreview = () => {
   const { pattern, flags, testString } = useRegexGlobalStore()
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 
+// Diferentes colores para distinguir los diferentes resaltados
 export const colors = ['#ffeaa7', '#a29bfe', '#fab1a0', '#81ecec', '#74b9ff', '#fdcb6e']
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
   matches: { index: number; length: number }[]
 }
 
+// Componente que resalta partes del texto basándose en las coincidencias encontradas
 export const HighlightedText = ({ text, matches }: Props) => {
   const parts: { text: string; highlight: boolean; color?: string }[] = []
   let lastIndex = 0

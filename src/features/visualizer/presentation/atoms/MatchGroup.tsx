@@ -7,6 +7,7 @@ interface Props {
   color: string
 }
 
+// Componente que divide en grupos las coincidencias
 export const MatchGroup = ({ index, value, color }: Props) => (
   <View style={styles.container}>
     <Text style={styles.label}>Match: {index + 1}:</Text>

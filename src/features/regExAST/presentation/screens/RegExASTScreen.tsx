@@ -8,6 +8,7 @@ import { ParseRegEx } from '../../domain/usecases/ParseRegEx'
 import { ParseText } from '../../domain/usecases/ParseText'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Pantalla principal que muestra el AST de la expresión regular y del texto analizado
 const RegexAstAndMatchScreen = () => {
   const { pattern, flags, testString, setAST, setMatchTree, ast } = useRegexGlobalStore()
 
@@ -15,6 +16,7 @@ const RegexAstAndMatchScreen = () => {
     const astResult = ParseRegEx(pattern, flags)
     const textResult = ParseText(pattern, flags, testString)
 
+    
     setAST(astResult)
     setMatchTree(textResult)
   }, [pattern, flags, testString])

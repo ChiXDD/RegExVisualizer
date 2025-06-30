@@ -1,5 +1,6 @@
 import { TextASTModel } from "../../data/models/TextASTModel"
 
+/// Función que analiza un texto utilizando una expresión regular y devuelve un árbol de coincidencias
 export const ParseText = (pattern: string, flags: string, text: string): TextASTModel[] => {
   const tree: TextASTModel[] = []
   try {

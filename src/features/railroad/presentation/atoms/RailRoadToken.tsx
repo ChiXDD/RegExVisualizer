@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native'
 
+// Definición de los tipos de los props que recibe el componente
+// type puede ser 'literal', 'operator', 'group' o 'branch'
 interface Props {
   type: 'literal' | 'operator' | 'group' | 'branch'
   value: string
 }
 
+// Componente que representa cada token o elemento del diagrama de ferrocarril
+// Recibe un tipo y un valor, y muestra el token con un estilo específico
 export const RailroadToken = ({ type, value }: Props) => (
   <View style={styles.wrapper}>
     <View style={styles.line} />

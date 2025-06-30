@@ -1,6 +1,7 @@
 import { RegExASTModel } from '../../data/models/RegExASTModel'
 import { parse } from 'regexp-tree'
 
+// Primero se parsea la expresión regular y luego se simplifica el AST
 export const ParseRegEx = (pattern: string, flags: string): RegExASTModel | null => {
   try {
     const ast = parse(`/${pattern}/${flags}`)

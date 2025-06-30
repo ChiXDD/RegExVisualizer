@@ -1,5 +1,7 @@
 import * as FileSystem from 'expo-file-system'
 
+//Se exporta el AST como un archivo JSON
+//Se utiliza FileSystem de Expo para manejar archivos en el dispositivo
 export const ExportJSON = async (ast: object) => {
   try {
     const fileName = `regex-ast-${Date.now()}.json`

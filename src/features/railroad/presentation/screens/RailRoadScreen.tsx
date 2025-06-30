@@ -4,9 +4,10 @@ import { useRailroadViewModel } from '../viewmodels/RailRoadViewModel'
 import { RailroadTrack } from '../molecules/RailRoadTrack'
 import GoBackButton from '../../../visualizer/presentation/atoms/GoBackButton'
 
+// Componente que muestra el diagrama de ferrocarril basado en la expresión regular actual
 export const RailroadScreen = () => {
-  const pattern = useRegexGlobalStore((state) => state.pattern)
-  const tokens = useRailroadViewModel()
+  const pattern = useRegexGlobalStore((state) => state.pattern) // Obtiene el patrón de la expresión regular desde el estado global
+  const tokens = useRailroadViewModel() // Utiliza el ViewModel para obtener los tokens
 
   return (
     <View style={styles.container}>

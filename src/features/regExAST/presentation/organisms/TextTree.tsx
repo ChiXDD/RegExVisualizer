@@ -3,6 +3,7 @@ import { Text, StyleSheet } from 'react-native'
 import { TextASTModel } from '../../data/models/TextASTModel'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Componente que muestra el árbol de coincidencias del texto analizado
 export const TextTree = () => {
   const matchTree = useRegexGlobalStore((state) => state.matchTree)
 

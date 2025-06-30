@@ -10,6 +10,7 @@ interface Props {
   setResult: (result: RegExModel | null) => void
 }
 
+// Formulario que emplea los inputs para capturar la expresión regular, las flags y el texto a evaluar
 export const RegExForm = ({ setResult }: Props) => {
   const { pattern, setPattern, flags, setFlags, testString, setTestString, reset } = useRegexGlobalStore()
 

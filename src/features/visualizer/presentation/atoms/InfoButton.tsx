@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
+// Boton para navegar a la pantalla de información sobre tokens de expresiones regulares
 export default function InfoButton() {
   const navigation = useNavigation()
 

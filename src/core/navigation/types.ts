@@ -1,3 +1,4 @@
+// Tipado de la navegación en la aplicación
 export type StackParamList = {
   Visualizer: undefined
   Info: undefined

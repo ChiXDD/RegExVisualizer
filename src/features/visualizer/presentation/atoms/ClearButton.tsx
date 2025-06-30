@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Boton que limpia los campos
 export const ClearButton = () => {
   const navigation = useNavigation()
   const reset = useRegexGlobalStore((state) => state.reset)

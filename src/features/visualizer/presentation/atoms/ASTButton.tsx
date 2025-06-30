@@ -5,6 +5,7 @@ import type { StackNavigationProp } from '@react-navigation/stack'
 import { StackParamList } from '../../../../core/navigation/types'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Boton que permite navegar a la pantalla de AST
 export default function ASTButton() {
   const navigation = useNavigation<StackNavigationProp<StackParamList>>()
   const { pattern, flags, testString } = useRegexGlobalStore()

@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { RegExMatch } from '../../domain/usecases/RegExMatch'
 import { RegExModel } from '../../data/models/RegExModel'
 
+// Pantalla principal del visualizador de expresiones regulares
 const VisualizerScreen = () => {
   const navigation = useNavigation()
 
@@ -32,8 +33,8 @@ const VisualizerScreen = () => {
       <ScrollView contentContainerStyle={styles.container}>
         <RegExForm setResult={setResult} />
         <InfoButton />
-        <ASTButton pattern={pattern} flags={flags} text={testString} />
-        <RailroadButton pattern={pattern} />
+        <ASTButton />
+        <RailroadButton />
         <MatchResultPreview result={result} />
       </ScrollView>
     </View>

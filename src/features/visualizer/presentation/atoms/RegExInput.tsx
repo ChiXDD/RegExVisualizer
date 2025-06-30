@@ -1,6 +1,7 @@
 import React from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
 
+// Los imputs que se utilizan en la aplicacion
 export const RegExInput = ({ label, value, onChangeText }: any) => (
   <View style={styles.container}>
     <Text style={styles.label}>{label}</Text>

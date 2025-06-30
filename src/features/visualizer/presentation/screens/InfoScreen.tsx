@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import GoBackButton from '../atoms/GoBackButton'
 
+// Pantalla que muestra información sobre los tokens de expresiones regulares
 export default function InfoScreen() {
   const navigation = useNavigation()
   return (

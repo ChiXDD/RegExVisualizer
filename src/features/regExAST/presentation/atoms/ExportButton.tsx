@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { ExportJSON } from '../../../../core/utils/ExportAST'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Componente que permite exportar el AST de la expresión regular actual como JSON
 export default function ExportButton() {
   const ast = useRegexGlobalStore((state) => state.ast)
 

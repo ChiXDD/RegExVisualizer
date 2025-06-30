@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native'
 import { RegExASTModel } from '../../data/models/RegExASTModel'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
+// Componente que muestra el AST de la expresión regular actual
 export const RegExTree = () => {
   const ast = useRegexGlobalStore((state) => state.ast)
 

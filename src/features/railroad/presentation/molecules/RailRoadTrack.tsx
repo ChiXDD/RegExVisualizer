@@ -6,6 +6,8 @@ interface Props {
   tokens: TokenType[]
 }
 
+// Renderiza de manera horizontal un diagrama de ferrocarril
+// Recibe un array de tokens que representan los elementos del diagrama y los une con líneas
 export const RailroadTrack = ({ tokens }: Props) => {
   return (
     <ScrollView horizontal contentContainerStyle={styles.scroll}>
