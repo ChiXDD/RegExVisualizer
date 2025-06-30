@@ -9,6 +9,7 @@ interface Props {
 
 export const MatchGroup = ({ index, value, color }: Props) => (
   <View style={styles.container}>
+    <Text style={styles.label}>Match: {index + 1}:</Text>
     <View style={[styles.matchBox, { backgroundColor: color }]}>
       <Text style={styles.text}>{value}</Text>
     </View>

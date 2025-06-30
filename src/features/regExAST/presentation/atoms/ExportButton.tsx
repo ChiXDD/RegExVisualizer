@@ -1,15 +1,16 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { ExportJSON } from '../../../../core/utils/ExportAST'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
-export const ClearButton = () => {
-  const navigation = useNavigation()
-  const reset = useRegexGlobalStore((state) => state.reset)
+export default function ExportButton() {
+  const ast = useRegexGlobalStore((state) => state.ast)
+
+  if (!ast) return null
 
   return (
     <View>
-      <TouchableOpacity onPress={reset} style={styles.button}>
-        <Text style={styles.buttonText}>Clear Inputs</Text>
+      <TouchableOpacity style={styles.button} onPress={() => ExportJSON(ast)}>
+        <Text style={styles.buttonText}>Export AST as JSON</Text>
       </TouchableOpacity>
     </View>
   )
@@ -18,10 +19,10 @@ export const ClearButton = () => {
 const styles = StyleSheet.create({
   button: {
     padding: 15,
-    backgroundColor: '#3674B5',
+    backgroundColor: '#708A58',
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 20,
   },
   buttonText: {
     color: '#fff',

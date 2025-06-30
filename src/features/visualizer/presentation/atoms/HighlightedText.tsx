@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const HighlightedText = ({ text, matches }: Props) => {
-  const parts = []
+  const parts: { text: string; highlight: boolean; color?: string }[] = []
   let lastIndex = 0
 
   matches.forEach((match, i) => {
@@ -17,12 +17,16 @@ export const HighlightedText = ({ text, matches }: Props) => {
     if (index > lastIndex) {
       parts.push({ text: text.slice(lastIndex, index), highlight: false })
     }
-    parts.push({ text: text.slice(index, index + length), highlight: true, color: colors[i % colors.length] })
+    parts.push({
+      text: text.slice(index, index + length),
+      highlight: true,
+      color: colors[i % colors.length],
+    })
     lastIndex = index + length
   })
 
   if (lastIndex < text.length) {
-    parts.push({ text: text.slice(lastIndex), highlight: '0' })
+    parts.push({ text: text.slice(lastIndex), highlight: false })
   }
 
   return (

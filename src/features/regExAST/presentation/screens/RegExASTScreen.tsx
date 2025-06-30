@@ -1,34 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
-import { useRoute, RouteProp } from '@react-navigation/native'
 import { RegExTree } from '../organisms/RegExTree'
 import { TextTree } from '../organisms/TextTree'
-import { RegExASTViewModel } from '../viewmodels/RegExASTViewModel' 
 import GoBackButton from '../../../visualizer/presentation/atoms/GoBackButton'
-
-type RouteParams = {
-  RegexAstAndMatch: {
-    pattern: string
-    flags: string
-    text: string
-  }
-}
+import ExportButton from '../atoms/ExportButton'
+import { ParseRegEx } from '../../domain/usecases/ParseRegEx'
+import { ParseText } from '../../domain/usecases/ParseText'
+import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
 const RegexAstAndMatchScreen = () => {
-  const route = useRoute<RouteProp<RouteParams, 'RegexAstAndMatch'>>()
-  const { pattern, flags, text } = route.params
+  const { pattern, flags, testString, setAST, setMatchTree, ast } = useRegexGlobalStore()
 
-  const { ast, matchTree } = RegExASTViewModel(pattern, flags, text)
+  useEffect(() => {
+    const astResult = ParseRegEx(pattern, flags)
+    const textResult = ParseText(pattern, flags, testString)
+
+    setAST(astResult)
+    setMatchTree(textResult)
+  }, [pattern, flags, testString])
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={{ marginBottom: 20 }}>
         <GoBackButton />
+        <ExportButton />
       </View>
       <Text style={styles.sectionTitle}>RegEx AST</Text>
-      <RegExTree ast={ast} />
+      <RegExTree />
       <Text style={styles.sectionTitle}>Text String Matches</Text>
-      <TextTree matchTree={matchTree} />
+      <TextTree />
     </ScrollView>
   )
 }
@@ -50,5 +50,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 16,
     marginBottom: 8,
+  },
+  exportButton: {
+    backgroundColor: '#0984e3',
+    color: 'white',
+    padding: 10,
+    borderRadius: 6,
+    textAlign: 'center',
+    marginVertical: 10,
+    fontWeight: 'bold',
   },
 })

@@ -1,22 +1,21 @@
 import React, { useEffect } from 'react'
-import { View, Button, StyleSheet, TouchableOpacity, Text } from 'react-native'
+import { View } from 'react-native'
 import { RegExInput } from '../atoms/RegExInput'
 import { ClearButton } from '../atoms/ClearButton'
+import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
+import { RegExMatch } from '../../domain/usecases/RegExMatch'
+import { RegExModel } from '../../data/models/RegExModel'
 
 interface Props {
-  pattern: string
-  flags: string
-  testString: string
-  setPattern: (v: string) => void
-  setFlags: (v: string) => void
-  setTestString: (v: string) => void
-  updateMatch: () => void
-  reset: () => void
+  setResult: (result: RegExModel | null) => void
 }
 
-export const RegExForm = ({ pattern, flags, testString, setPattern, setFlags, setTestString, updateMatch, reset }: Props) => {
+export const RegExForm = ({ setResult }: Props) => {
+  const { pattern, setPattern, flags, setFlags, testString, setTestString, reset } = useRegexGlobalStore()
+
   useEffect(() => {
-    updateMatch()
+    const matched = RegExMatch(pattern, flags, testString)
+    setResult(matched)
   }, [pattern, flags, testString])
 
   return (

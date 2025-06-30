@@ -1,16 +1,15 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { TextASTModel } from '../../data/models/TextASTModel'
+import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
-interface Props {
-  matchTree: TextASTModel[]
-}
+export const TextTree = () => {
+  const matchTree = useRegexGlobalStore((state) => state.matchTree)
 
-export const TextTree = ({ matchTree }: Props) => {
   const renderNode = (node: TextASTModel, depth: number = 0): string[] => {
     const indent = ' '.repeat(depth * 2)
     const lines: string[] = []
-    
+
     lines.push(`${indent}└─ ${node.label}: ${node.value}`)
     if (node.children) {
       node.children.forEach((child) => {
@@ -19,7 +18,14 @@ export const TextTree = ({ matchTree }: Props) => {
     }
     return lines
   }
-  return <Text style={styles.text}>{matchTree.flatMap((node) => renderNode(node)).join('\n')}</Text>
+
+  if (!matchTree?.length) {
+    return <Text style={styles.text}>No match tree available.</Text>
+  }
+
+  const lines = matchTree.flatMap((node) => renderNode(node))
+
+  return <Text style={styles.text}>{lines.join('\n')}</Text>
 }
 
 const styles = StyleSheet.create({

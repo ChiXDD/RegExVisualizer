@@ -1,12 +1,11 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { RegExASTModel } from '../../data/models/RegExASTModel'
+import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
-interface Props {
-  ast: RegExASTModel | null
-}
+export const RegExTree = () => {
+  const ast = useRegexGlobalStore((state) => state.ast)
 
-export const RegExTree = ({ ast }: Props) => {
   const renderNode = (node: RegExASTModel, depth: number = 0): string[] => {
     const indent = ' '.repeat(depth * 2)
     const lines: string[] = []

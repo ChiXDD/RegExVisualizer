@@ -1,32 +1,31 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import type { StackNavigationProp } from '@react-navigation/stack'
 import { StackParamList } from '../../../../core/navigation/types'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
-export default function ASTButton() {
+export const RailroadButton = () => {
   const navigation = useNavigation<StackNavigationProp<StackParamList>>()
-  const { pattern, flags, testString } = useRegexGlobalStore()
+  const pattern = useRegexGlobalStore((state) => state.pattern)
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          navigation.navigate('AST', {
+          navigation.navigate('Railroad', {
             pattern,
-            flags,
-            text: testString,
           })
         }>
-        <Text style={styles.buttonText}>AST</Text>
+        <Text style={styles.buttonText}>Railroad Diagram</Text>
       </TouchableOpacity>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+
   container: {
     marginTop: 12,
     alignItems: 'center',

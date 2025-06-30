@@ -7,7 +7,7 @@ export default function InfoButton() {
   return (
     <View>
       <Text style={styles.title}>Don't know how to make a regular expression?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Info')}>
         <Text style={styles.text}>Check All Tokens Here!</Text>
       </TouchableOpacity>
     </View>

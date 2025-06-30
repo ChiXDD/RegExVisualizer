@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import GoBackButton from '../atoms/GoBackButton'
 
-export default function DetailsScreen() {
+export default function InfoScreen() {
   const navigation = useNavigation()
   return (
     <View style={styles.container}>
@@ -90,22 +90,21 @@ export default function DetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    marginTop: 55,
     marginBottom: 20,
     flex: 1,
   },
   title: {
-    color: '#ooo',
+    color: '#000',
     fontSize: 20,
     marginTop: 20,
     fontWeight: 'bold',
   },
   item: {
-    color: '#ooo',
+    color: '#000',
     fontSize: 16,
     marginVertical: 2,
   },
   token: {
-    color: '#ooo',
+    color: '#000',
   },
 })

@@ -1,15 +1,11 @@
 import { useState } from 'react'
 import { RegExModel } from '../../data/models/RegExModel'
 import { RegExMatch } from '../../domain/usecases/RegExMatch'
-
-const DEFAULT_PATTERN = 'regex|tester|visualizer'
-const DEFAULT_FLAGS = 'gi'
-const DEFAULT_STRING = 'Welcome to the RegEx Visualizer & Tester. Modify the inputs below to test and visualize your own regular expression.'
+import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
 export const VisualizerViewModel = () => {
-  const [pattern, setPattern] = useState(DEFAULT_PATTERN)
-  const [flags, setFlags] = useState(DEFAULT_FLAGS)
-  const [testString, setTestString] = useState(DEFAULT_STRING)
+  const { pattern, setPattern, flags, setFlags, testString, setTestString, reset: resetGlobal } = useRegexGlobalStore()
+
   const [result, setResult] = useState<RegExModel | null>(null)
 
   const updateMatch = () => {
@@ -18,9 +14,7 @@ export const VisualizerViewModel = () => {
   }
 
   const reset = () => {
-    setPattern('')
-    setFlags('')
-    setTestString('')
+    resetGlobal() // 🟢 esto reinicia los valores al default global
     setResult(null)
   }
 

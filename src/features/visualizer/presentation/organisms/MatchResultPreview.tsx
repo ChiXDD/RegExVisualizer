@@ -2,22 +2,16 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { HighlightedText, colors } from '../atoms/HighlightedText'
 import { MatchGroup } from '../atoms/MatchGroup'
+import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
 
-interface Props {
-  result: {
-    pattern: string
-    flags: string
-    testString: string
-    matches: RegExpMatchArray | null
-  } | null
-}
+export const MatchResultPreview = () => {
+  const { pattern, flags, testString } = useRegexGlobalStore()
 
-export const MatchResultPreview = ({ result }: Props) => {
-  if (!result) return null
+  if (!pattern || !testString) return null
 
   let regex: RegExp | null = null
   try {
-    regex = new RegExp(result.pattern, result.flags)
+    regex = new RegExp(pattern, flags)
   } catch (e) {
     return <Text style={styles.error}>Expresión inválida</Text>
   }
@@ -26,11 +20,11 @@ export const MatchResultPreview = ({ result }: Props) => {
 
   if (regex.global) {
     let m
-    while ((m = regex.exec(result.testString)) !== null) {
+    while ((m = regex.exec(testString)) !== null) {
       matchData.push({ index: m.index, length: m[0].length, value: m[0] })
     }
   } else {
-    const m = result.testString.match(regex)
+    const m = testString.match(regex)
     if (m && m.index !== undefined) {
       matchData.push({ index: m.index, length: m[0].length, value: m[0] })
     }
@@ -40,7 +34,7 @@ export const MatchResultPreview = ({ result }: Props) => {
     <View style={styles.container}>
       <Text style={styles.title}>Text String:</Text>
 
-      <HighlightedText text={result.testString} matches={matchData.map(({ index, length }) => ({ index, length }))} />
+      <HighlightedText text={testString} matches={matchData.map(({ index, length }) => ({ index, length }))} />
 
       <Text style={styles.matchInfo}>Match Information:</Text>
       {matchData.map((m, i) => (
