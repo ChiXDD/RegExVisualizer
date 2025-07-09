@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
 interface Props {
   index: number
@@ -8,14 +9,18 @@ interface Props {
 }
 
 // Componente que divide en grupos las coincidencias
-export const MatchGroup = ({ index, value, color }: Props) => (
-  <View style={styles.container}>
-    <Text style={styles.label}>Match: {index + 1}:</Text>
-    <View style={[styles.matchBox, { backgroundColor: color }]}>
-      <Text style={styles.text}>{value}</Text>
+export const MatchGroup = ({ index, value, color }: Props) => {
+  const { colors } = useThemeStore()
+
+  return (
+    <View style={styles.container}>
+      <Text style={[styles.label, { color: colors.text }]}>Match {index + 1}:</Text>
+      <View style={[styles.matchBox, { backgroundColor: color }]}>
+        <Text style={styles.text}>{value}</Text>
+      </View>
     </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

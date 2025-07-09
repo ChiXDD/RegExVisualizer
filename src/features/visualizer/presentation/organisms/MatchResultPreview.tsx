@@ -1,12 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { HighlightedText, colors } from '../atoms/HighlightedText'
+import { HighlightedText, highlighColor } from '../atoms/HighlightedText'
 import { MatchGroup } from '../atoms/MatchGroup'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
 // Muestra en tiempo real las coincidencias de la expresión regular
 export const MatchResultPreview = () => {
   const { pattern, flags, testString } = useRegexGlobalStore()
+  const { colors } = useThemeStore()
 
   if (!pattern || !testString) return null
 
@@ -14,7 +16,7 @@ export const MatchResultPreview = () => {
   try {
     regex = new RegExp(pattern, flags)
   } catch (e) {
-    return <Text style={styles.error}>Expresión inválida</Text>
+    return <Text style={styles.error}>Invalid Expression</Text>
   }
 
   const matchData: { index: number; length: number; value: string }[] = []
@@ -37,9 +39,9 @@ export const MatchResultPreview = () => {
 
       <HighlightedText text={testString} matches={matchData.map(({ index, length }) => ({ index, length }))} />
 
-      <Text style={styles.matchInfo}>Match Information:</Text>
+      <Text style={[styles.matchInfo, { color: colors.text }]}>Match Information:</Text>
       {matchData.map((m, i) => (
-        <MatchGroup key={i} index={i} value={m.value} color={colors[i % colors.length]} />
+        <MatchGroup key={i} index={i} value={m.value} color={highlighColor[i % highlighColor.length]} />
       ))}
     </View>
   )

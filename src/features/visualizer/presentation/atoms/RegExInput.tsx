@@ -1,13 +1,23 @@
 import React from 'react'
 import { TextInput, View, Text, StyleSheet } from 'react-native'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
-// Los imputs que se utilizan en la aplicacion
-export const RegExInput = ({ label, value, onChangeText }: any) => (
-  <View style={styles.container}>
-    <Text style={styles.label}>{label}</Text>
-    <TextInput style={styles.input} value={value} onChangeText={onChangeText} autoCorrect={false} multiline/>
-  </View>
-)
+interface Props {
+  label: string
+  value: string
+  onChangeText: (text: string) => void
+}
+
+export const RegExInput = ({ label, value, onChangeText }: Props) => {
+  const { colors } = useThemeStore()
+
+  return (
+    <View style={styles.container}>
+      <Text style={[styles.label, { color: colors.text }]}>{label}</Text>
+      <TextInput style={[styles.input, { color: colors.text, borderColor: colors.border }]} value={value} onChangeText={onChangeText} autoCorrect={false} multiline />
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +30,6 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
     padding: 10,
     borderRadius: 6,
     fontSize: 20,

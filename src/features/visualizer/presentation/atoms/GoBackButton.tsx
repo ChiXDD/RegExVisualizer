@@ -1,14 +1,16 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
-// Boton para regresar a la pagina principal
+// Botón para regresar a la página principal
 export default function GoBackButton() {
   const navigation = useNavigation()
+  const { colors } = useThemeStore()
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.button}>
-        <Text style={styles.buttonText}>Back</Text>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.button, { backgroundColor: colors.buttonBackground }]}>
+        <Text style={[styles.buttonText, { color: colors.buttonText }]}>Back</Text>
       </TouchableOpacity>
     </View>
   )
@@ -17,13 +19,11 @@ export default function GoBackButton() {
 const styles = StyleSheet.create({
   button: {
     padding: 15,
-    backgroundColor: '#3674B5',
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 20,
   },
   buttonText: {
-    color: '#fff',
     fontSize: 20,
   },
 })

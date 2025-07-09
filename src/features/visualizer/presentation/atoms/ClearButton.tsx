@@ -1,16 +1,18 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
-// Boton que limpia los campos
+// Botón que limpia los campos
 export const ClearButton = () => {
   const navigation = useNavigation()
   const reset = useRegexGlobalStore((state) => state.reset)
+  const { colors } = useThemeStore()
 
   return (
     <View>
-      <TouchableOpacity onPress={reset} style={styles.button}>
-        <Text style={styles.buttonText}>Clear Inputs</Text>
+      <TouchableOpacity onPress={reset} style={[styles.button, { backgroundColor: colors.buttonBackground }]}>
+        <Text style={[styles.buttonText, { color: colors.buttonText }]}>Clear Inputs</Text>
       </TouchableOpacity>
     </View>
   )
@@ -19,13 +21,11 @@ export const ClearButton = () => {
 const styles = StyleSheet.create({
   button: {
     padding: 15,
-    backgroundColor: '#3674B5',
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 10,
   },
   buttonText: {
-    color: '#fff',
     fontSize: 20,
   },
 })

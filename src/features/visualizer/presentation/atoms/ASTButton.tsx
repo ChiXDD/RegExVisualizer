@@ -4,16 +4,18 @@ import { useNavigation } from '@react-navigation/native'
 import type { StackNavigationProp } from '@react-navigation/stack'
 import { StackParamList } from '../../../../core/navigation/types'
 import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
-// Boton que permite navegar a la pantalla de AST
+// Botón que permite navegar a la pantalla de AST
 export default function ASTButton() {
   const navigation = useNavigation<StackNavigationProp<StackParamList>>()
   const { pattern, flags, testString } = useRegexGlobalStore()
+  const { colors } = useThemeStore()
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, { backgroundColor: colors.buttonBackground }]}
         onPress={() =>
           navigation.navigate('AST', {
             pattern,
@@ -21,7 +23,7 @@ export default function ASTButton() {
             text: testString,
           })
         }>
-        <Text style={styles.buttonText}>AST</Text>
+        <Text style={[styles.buttonText, { color: colors.buttonText }]}>AST</Text>
       </TouchableOpacity>
     </View>
   )
@@ -34,13 +36,11 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    backgroundColor: '#3674B5',
     width: '100%',
     borderRadius: 8,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
     fontSize: 18,
   },
 })

@@ -1,8 +1,9 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
 // Diferentes colores para distinguir los diferentes resaltados
-export const colors = ['#ffeaa7', '#a29bfe', '#fab1a0', '#81ecec', '#74b9ff', '#fdcb6e']
+export const highlighColor = ['#ffeaa7', '#a29bfe', '#fab1a0', '#81ecec', '#74b9ff', '#fdcb6e']
 
 interface Props {
   text: string
@@ -13,6 +14,7 @@ interface Props {
 export const HighlightedText = ({ text, matches }: Props) => {
   const parts: { text: string; highlight: boolean; color?: string }[] = []
   let lastIndex = 0
+  const { colors } = useThemeStore()
 
   matches.forEach((match, i) => {
     const { index, length } = match
@@ -22,7 +24,7 @@ export const HighlightedText = ({ text, matches }: Props) => {
     parts.push({
       text: text.slice(index, index + length),
       highlight: true,
-      color: colors[i % colors.length],
+      color: highlighColor[i % highlighColor.length],
     })
     lastIndex = index + length
   })

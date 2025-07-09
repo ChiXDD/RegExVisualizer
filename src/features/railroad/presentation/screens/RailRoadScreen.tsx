@@ -1,45 +1,26 @@
-import { ScrollView, Text, StyleSheet, View } from 'react-native'
-import { useRegexGlobalStore } from '../../../../core/context/GlobalStore'
-import { useRailroadViewModel } from '../viewmodels/RailRoadViewModel'
-import { RailroadTrack } from '../molecules/RailRoadTrack'
+// src/features/railroad/presentation/screens/RailroadScreen.tsx
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import GoBackButton from '../../../visualizer/presentation/atoms/GoBackButton'
+import { RegulexEmbed } from '../molecules/RegulexEmbed'
+import { useThemeStore } from '../../../../core/context/ThemeStore'
 
-// Componente que muestra el diagrama de ferrocarril basado en la expresión regular actual
 export const RailroadScreen = () => {
-  const pattern = useRegexGlobalStore((state) => state.pattern) // Obtiene el patrón de la expresión regular desde el estado global
-  const tokens = useRailroadViewModel() // Utiliza el ViewModel para obtener los tokens
+  const { colors } = useThemeStore()
 
   return (
-    <View style={styles.container}>
-      <View style={{ marginBottom: 20 }}>
-        <GoBackButton />
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <GoBackButton />
+      <Text style={[styles.label, { color: colors.text }]}>Railroad Diagram</Text>
+      <View style={styles.diagramContainer}>
+        <RegulexEmbed />
       </View>
-      <ScrollView>
-        <Text style={styles.label}>Expression:</Text>
-        <Text style={styles.patternDisplay}>/{pattern}/</Text>
-
-        <Text style={styles.label}>Diagram:</Text>
-        <RailroadTrack tokens={tokens} />
-      </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  label: {
-    fontWeight: 'bold',
-    marginBottom: 8,
-    fontSize: 16,
-  },
-  patternDisplay: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 8,
-    fontSize: 16,
-    fontFamily: 'monospace',
-    marginBottom: 12,
-  },
+  container: { flex: 1 },
+  label: { fontSize: 16, fontWeight: 'bold', margin: 12 },
+  diagramContainer: { flex: 1 },
 })
