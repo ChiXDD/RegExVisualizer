@@ -1,4 +1,3 @@
-// src/features/railroad/presentation/screens/RailroadScreen.tsx
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import GoBackButton from '../../../visualizer/presentation/atoms/GoBackButton'
@@ -20,7 +19,15 @@ export const RailroadScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  label: { fontSize: 16, fontWeight: 'bold', margin: 12 },
-  diagramContainer: { flex: 1 },
+  container: {
+    flex: 1,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    margin: 12,
+  },
+  diagramContainer: {
+    flex: 1,
+  },
 })

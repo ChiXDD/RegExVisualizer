@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import VisualizerScreen from './src/features/visualizer/presentation/screens/VisualizerScreen'
 import InfoScreen from './src/features/visualizer/presentation/screens/InfoScreen'
 import RegExASTScreen from './src/features/regExAST/presentation/screens/RegExASTScreen'
+import { HistoryScreen } from './src/features/history/presentation/screens/HistoryScreen'
 import { RailroadScreen } from './src/features/railroad/presentation/screens/RailRoadScreen'
 import { StackParamList } from './src/core/navigation/types'
 import { useThemeStore } from './src/core/context/ThemeStore'
@@ -16,7 +17,7 @@ const Stack = createNativeStackNavigator<StackParamList>()
 const Tab = createBottomTabNavigator()
 
 // El stack que contiene todas las pantallas internas de "Visualizer"
-function VisualizerStack() {
+function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={VisualizerScreen} />
@@ -47,14 +48,14 @@ export default function App() {
         }}>
         <Tab.Screen
           name="Visualizer"
-          component={VisualizerStack}
+          component={HomeStack}
           options={{
             tabBarIcon: (props) => <FontAwesome6 name="house" size={20} color={props.color} iconStyle="solid" />,
           }}
         />
         <Tab.Screen
           name="History"
-          component={VisualizerScreen}
+          component={HistoryScreen}
           options={{
             tabBarIcon: (props) => <FontAwesome6 name="clock-rotate-left" size={20} color={props.color} iconStyle="solid" />,
           }}
